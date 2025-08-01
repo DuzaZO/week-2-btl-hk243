@@ -82,4 +82,66 @@ TEST_SUITE("DoublyLinkedList<Point> Operations")
     }
 }
 
-// TODO add test case
+TEST_SUITE("DoublyLinkedList Additional Tests")
+{
+    TEST_CASE("Insert and delete at boundaries")
+    {
+        DoublyLinkedList<int> list;
+        list.insertAtTail(10);
+        list.insertAtTail(20);
+        list.insertAtTail(30); // [10, 20, 30]
+
+        SUBCASE("Delete at head")
+        {
+            list.deleteAt(0);
+            CHECK(list.size() == 2);
+            CHECK(list.get(0) == 20);
+        }
+
+        SUBCASE("Delete at tail")
+        {
+            list.deleteAt(2);
+            CHECK(list.size() == 2);
+            CHECK(list.get(1) == 20);
+        }
+    }
+
+    TEST_CASE("Clear list")
+    {
+        DoublyLinkedList<int> list;
+        list.insertAtHead(5);
+        list.insertAtHead(6);
+        list.deleteAt(0);
+        list.deleteAt(0);
+        CHECK(list.size() == 0);
+    }
+
+    TEST_CASE("Get throws on out of bounds")
+    {
+        DoublyLinkedList<int> list;
+        list.insertAtTail(1);
+        CHECK_THROWS_AS(list.get(1), std::out_of_range);
+    }
+
+    TEST_CASE("Reverse empty and single element list")
+    {
+        DoublyLinkedList<int> list;
+        list.reverse();
+        CHECK(list.size() == 0);
+
+        list.insertAtHead(42);
+        list.reverse();
+        CHECK(list.get(0) == 42);
+    }
+
+    TEST_CASE("Insert and delete Point at tail")
+    {
+        DoublyLinkedList<Point> list;
+        list.insertAtTail(Point(7, 8));
+        list.insertAtTail(Point(9, 10));
+        CHECK(list.size() == 2);
+        list.deleteAt(1);
+        CHECK(list.size() == 1);
+        CHECK(list.get(0) == Point(7, 8));
+    }
+}
