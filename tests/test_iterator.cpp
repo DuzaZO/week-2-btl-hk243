@@ -170,7 +170,7 @@ TEST_SUITE("DoublyLinkedList Iterator")
     {
         DoublyLinkedList<int> list;
         for (int i = 1; i <= 3; ++i)
-            list.insertAtTail(i); // [1, 2, 3]
+        list.insertAtTail(i); // [1, 2, 3]
         list.reverse(); // [3, 2, 1]
         list.reverse(); // [1, 2, 3]
         int expected[] = {1, 2, 3};
