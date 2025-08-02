@@ -122,6 +122,12 @@ TEST_SUITE("DoublyLinkedList Additional Tests")
         list.insertAtTail(1);
         CHECK_THROWS_AS(list.get(1), std::out_of_range);
     }
+    TEST_CASE("Get throws on out of bounds")
+    {
+        DoublyLinkedList<int> list;
+        list.insertAtTail(1);
+        CHECK_THROWS_AS(list.get(3), std::out_of_range);
+    }
 
     TEST_CASE("Reverse empty and single element list")
     {
